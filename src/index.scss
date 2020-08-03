@@ -27,6 +27,7 @@ body {
     min-height: 100%;
     overflow: hidden;
     background: radial-gradient(circle at 0% 0%, hsl(240, 38%, 23%) 0%, black 70%);
+    transition: opacity 1s cubic-bezier(0.39, 0.575, 0.565, 1);
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;

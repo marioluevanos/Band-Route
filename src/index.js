@@ -19,3 +19,6 @@ root.appendChild(el);
 
 const buttonNext = document.getElementById('button-next');
 buttonNext.addEventListener('click', vehicle.moveToNextPosition.bind(vehicle));
+
+// Fade in the body
+document.body.style = null;
