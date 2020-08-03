@@ -1,6 +1,6 @@
 import eventEmitter from './eventEmitter';
 
-export default class DataUi {
+export default class SideData {
     constructor() {
         this.elData = this.createTravelData();
         document.getElementById('travel-distance').appendChild(this.elData);

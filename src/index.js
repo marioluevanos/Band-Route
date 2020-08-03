@@ -7,13 +7,13 @@ import {
 
 // Components
 import Chart from './Chart';
-import DataUi from './DataUi';
+import SideData from './SideData';
 
 const routes = points40;
 const root = document.getElementById('root');
 const { el, vehicle } = new Chart(routes);
 
-new DataUi();
+new SideData();
 
 root.appendChild(el);
 
