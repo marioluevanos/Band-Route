@@ -1,0 +1,33 @@
+{
+  "name": "band-route-problem",
+  "version": "1.0.0",
+  "description": "The year is 2092. A budding young vocalist and his band have just enough money to buy a hovercar and begin their tour. They have struck deals with multiple venues and can set their own tour schedule, any venue in any order. Can you help them find the shortest route to take to hit all cities to maximize their fuel budget?",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaredSartin/band-route-problem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaredSartin/band-route-problem/issues"
+  },
+  "homepage": "https://github.com/JaredSartin/band-route-problem#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "cssnano": "^4.1.10",
+    "sass": "^1.26.10"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "dependencies": {
+    "EventEmitter": "^1.0.0"
+  }
+}

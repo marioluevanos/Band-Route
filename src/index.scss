@@ -1,0 +1,317 @@
+html {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    --color-primary: #05fe5d;
+    --color-secondary: #fff9da;
+    --color-gray: #74749f;
+    --color-bg-alt: #020214;
+    --color-bg: #030327;
+    --color-highlight: rgb(142, 108, 255);
+
+    --ui-side-col: 320px;
+
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-secondary);
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at 0% 0%, hsl(240, 38%, 23%) 0%, black 70%);
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+#root {
+    --bw: 1.5rem;
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    border-right: none;
+    width: calc(100% - calc(var(--ui-side-col)));
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+/*
+    Svg Chart
+    --------------------------------------------
+*/
+
+svg {    
+    overflow: visible;
+    position: relative;
+}
+
+svg .point {
+    stroke: var(--color-highlight);
+    transition: all 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
+    &.visited {
+        stroke: var(--color-primary);
+    }
+}
+
+svg text {
+    fill: var(--color-gray);
+    font-size: small;
+}
+
+svg polyline {
+    stroke-dasharray: 2;
+}
+
+#vehicle {
+    transform-origin: 50% 50%;
+    animation: vehicle-bounce 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+    transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+@keyframes vehicle-bounce {
+    0% {
+        transform: scale(1)  translate3d(0, 0, 0);
+    }
+    66% {
+        transform: scale(1) translate3d(0, 0.25em, 0);
+    }
+    100% {
+        transform: scale(1) translate3d(0, 0, 0);
+    }
+}
+
+/*
+    Aside Header Column
+    --------------------------------------------
+*/
+
+header {
+    position: fixed;
+    top: 0; 
+    right: 0;
+    bottom: 0;
+    width: var(--ui-side-col);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        pointer-events: none;
+        z-index: -1;
+        left: 0;
+        right: 0;
+    }
+    &::before {
+        top: 0;
+        bottom: 0;
+        background: var(--color-bg-alt);
+        opacity: 0.05;
+    }
+    &::after {
+        content: '';
+        bottom: 5%;
+        top: 5%;
+        border-left: 1px solid var(--color-gray);
+        opacity: 0.2;
+    }
+}
+
+h1 {
+    font-weight: normal;
+    text-align: center;
+    span {
+        display: block;
+    }
+}
+
+.font-ui {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1rem;
+}
+
+.font-small {
+    font-size: 0.65rem;
+    line-height: 1.65;
+}
+
+.font-display {
+    font-family: 'Stalinist One', sans-serif;
+    position: relative;
+    text-shadow: 0 0 40px var(--color-primary);
+    font-size: 2.25rem;
+    color: var(--color-primary);
+    display: block;
+    &::before,
+    &::after {
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 1;
+    }
+    &:before{
+        content: attr(data-text);
+        overflow: hidden;
+        text-shadow: 1px 0 rgb(0, 255, 8); 
+        top: 0;
+        color: #85ffb0;
+        animation: glitch 4s infinite linear alternate-reverse;
+    }
+    &::after {
+        content: attr(data-text);
+        text-shadow: -1px 0 red;
+        top: 0;
+        color: var(--color-highlight);
+        animation: glitch-2 6s infinite linear alternate-reverse;
+    }
+}
+
+@keyframes glitch {
+    $steps:20;
+    @for $i from 0 through $steps {
+        #{percentage($i * (1/$steps))} {
+            clip: rect(random(70) + px, 1000px, random(1000)+px, 0);
+        }
+    }
+}
+
+@keyframes glitch-2 {
+    $steps:20;
+    @for $i from 0 through $steps {
+        #{percentage($i*(1/$steps))} {
+            clip: rect(random(45)+px, 1000px, random(35)+px, 0);
+        }
+    }
+}
+
+.travel-data {
+    text-align: center;
+    width: 100%;
+    span {
+        padding: 1rem 0;
+        display: block;
+        border-bottom: 1px solid rgb(116 116 159 / .2);
+    }
+    #travel-total::after {
+        content: ' km';
+    }
+
+    progress[value] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        width: 100%;
+        height: 10px;
+        border-radius: 100px;
+    }
+
+    progress[value]::-webkit-progress-value {
+        background: var(--color-primary);
+        border-radius: 5px; 
+    }
+    progress {
+        background-color: var(--color-bg-alt);
+    }
+    progress::-webkit-progress-bar {
+        background-color: rgb(116 116 159 / .2);
+        border-radius: 5px
+    }
+    progress::-webkit-progress-value {
+        background-color: var(--color-primary);
+    }
+    progress::-moz-progress-bar {
+        background-color: var(--color-bg-alt);
+    }
+}
+
+#button-next {
+    padding: 1rem 3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    z-index: 1;
+    border: 2px solid transparent;
+    transition: all 0.45s cubic-bezier(0.645, 0.045, 0.355, 1);
+    outline: none;
+
+    // Pseudo
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        border: inherit;
+        border-radius: inherit;
+        transition: inherit;
+        z-index: -1;
+    }
+
+    &::before {
+        border: inherit;
+        border-color: var(--color-primary);
+        transform: scale(1.15);
+        filter: blur(10px);
+        opacity: 0;
+    }
+
+    &::after {
+        background: var(--color-primary);
+    }
+
+    // Hover
+    &:hover {
+        color: var(--color-primary);
+    }
+
+    &:hover::before {
+        transform: scale(1);
+        filter: blur(0px);
+        opacity: 1;
+    }
+
+    &:hover::after {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    &:active {
+        animation: button-active 0.45s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+}
+
+@keyframes button-active {
+    0% {
+        transform: scale(0.95);
+        color: var(--color-highlight);
+    }
+    66% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        color: var(--color-primary);
+    }
+}
