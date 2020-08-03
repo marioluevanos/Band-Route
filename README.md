@@ -24,4 +24,19 @@ If you have questions on the challenge, please contact Jared Sartin: jared@leftf
 
 # Candidate Notes:
 
-### Fill in comments, external tool usage, and time tracking
+#### Tooling used
+
+Parcel Bundler
+Sass
+Babel
+
+#### Summary of Work
+
+To get the distance between two arbitrary points, I used Pythagorean Theorem. Most of the logic is found in "Distances.js", where I take the first vector point and calculate each distance to all points. I do this for every other point. The next step I took was to extract the smallest value, which is the shortest distance to find the nearest adjacent vector point. I used a lot of high order array functions with map, filter, and reduce. I think it's the time complexity is O(n3), but I could be wrong. 
+
+To display the data, I created an SVG and used <circle> and <polyLine> elements to plot the points on the screen. The polyline element grows each trip as I concatenate the coordinates on each move. The SVG width and height are based on the max-width and hight found in the vertices.
+To track the movement of the vehicle, I created a Set() object and tracked the keys of each point. I used that Set object to filter out any points that have been visited on each trip. 
+I used an event-emitter to manage the state. I used some of that state of visually display some trip data on the sidebar. 
+
+#### Time
+I work on the for a day, on-and-off. It was more than 4 hours. I had fun with it. 
